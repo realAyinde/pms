@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% load static %} {% block contents_section %}
+<section class="content profile-page">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>{{patient.name}} Profile</h2>
+      {% comment %} <small class="text-muted"></small> {% endcomment %}
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="card patient-profile">
+          <img src="{{patient.profile_photo.url}}" class="img-fluid" alt="" />
+        </div>
+        <div class="card">
+          <div class="header">
+            <h2>About Patient</h2>
+          </div>
+          <div class="body">
+            <strong>Name</strong>
+            <p>{{patient.name}}</p>
+            <strong>Occupation</strong>
+            <p>{{patient.occupation}}</p>
+            <strong>Email ID</strong>
+            <p>{{patient.email}}</p>
+            <strong>Phone</strong>
+            <p>{{patient.phone_number}}</p>
+            <hr />
+            <strong>Address</strong>
+            <address>{{patient.address}}</address>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#report"
+                  >Biographyink</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#timeline"
+                  >Timeline</a
+                >
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane in active" id="report">
+                <div class="wrap-reset">
+                  <div class="mypost-list">
+                    <div class="post-box">
+                        <p><strong>Registration Number:</strong> {{patient.registration_number}}</p>
+                        <p><strong>Status:</strong> {{patient.status}}</p>
+                        <p><strong>Date of Birth:</strong> {{patient.date_of_birth}}</p>
+                        <p><strong>Gender:</strong> {{patient.gender}}</p>
+                        <p><strong>Blood Group:</strong> {{patient.blood_group}}</p>
+                    </div>
+                    <hr />
+                    <div class="post-box">
+                      <h4>Next of Kin</h4>
+                        <p><strong>Name: </strong>{{kin.name}}</p>
+                        <p><strong>Relationship:</strong> {{kin.relationship}}</p>
+                        <p><strong>Phone Number:</strong> {{kin.phone_number}}</p>
+                        <p><strong>Email:</strong> {{kin.email}}</p>
+                    </div>
+                    <hr />
+                    <div class="post-box">
+                    <h4>Medical Cover</h4>
+                      <p><strong>Name: </strong>{{cover.name}}</p>
+                        <p><strong>Email:</strong> {{cover.email}}</p>
+                        <p><strong>Type of Cover:</strong> {{cover.type_of_cover}}</p>
+                    </div>
+                    <hr />
+                    <div class="post-box">
+                    <h4>Allergies</h4>
+                        <p><strong>Name: </strong>{{allergies.name}}</p>
+                        <p><strong>Level: </strong> {{allergies.level}}</p>
+                    </div>
+                    
+                </div>
+              </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="timeline">
+                <div class="wrap-reset">
+                    <div class="post-box">
+                        <h4>Current Medications</h4>
+                        <p><strong>Name: </strong>{{medicine.name}}</p>
+                        <p><strong>Given: </strong> {{medicine.date_given|timesince}} ago</p>
+                        <p><strong>Given by:</strong> Dr. {{doctor_prescribing.name}}</p>
+                    </div>
+                </div>
+                <hr />
+                <div class="timeline-body">
+                  <div class="timeline m-border">
+                    <div class="timeline-item border-info">
+                      <div class="item-content">
+                        <div class="text-small">11:30</div>
+                        <p>Routine Checkup</p>
+                      </div>
+                    </div>   
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock contents_section %}

@@ -1,0 +1,335 @@
+{% extends 'base.html' %} {% load static %} {% block contents_section %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Add Patient</h2>
+      <small class="text-muted"></small>
+    </div>
+
+    {% comment %} Basic Information {% endcomment %}
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Basic Information</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Middle Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="datepicker form-control"
+                      placeholder="Date of Birth"
+                      data-dtp="dtp_f179l"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input type="text" class="form-control" placeholder="Age" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group drop-custum">
+                  <select class="form-control show-tick">
+                    <option value="">-- Gender --</option>
+                    <option value="10">Male</option>
+                    <option value="20">Female</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Mother's Maiden Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Occupation"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <textarea
+                      rows="4"
+                      class="form-control no-resize"
+                      placeholder="Description"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Address {% endcomment %}
+
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>Address</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <textarea
+                      rows="4"
+                      class="form-control no-resize"
+                      placeholder="Home or Work Address"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Contact Phone"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Other Phone"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Clinical Details {% endcomment %}
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>Clinical Details</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Blood Group"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Genotype"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Height"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Weight"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Disable"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Allergies"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Notes"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Other notes {% endcomment %}
+
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>Other Notes</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Other notes...."
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-raised g-bg-cyan">
+                  Submit
+                </button>
+                <button type="submit" class="btn btn-raised">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock contents_section %}

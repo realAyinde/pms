@@ -1,0 +1,51 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card-top"></div>
+    <div class="card">
+        <h1 class="title"><span>Patient Management App</span>Login <span class="msg">Sign in to start your session</span></h1>
+        <div class="col-md-12">
+
+{% comment %} <form class="login-form" method="post" action="/accounts/login/">
+          {% csrf_token %}
+          <label style="color:black">{{form.username.label}}</label>
+          {{form.username}}
+          <label style="color:black">{{form.password.label}}</label>
+          {{form.password}}
+          <a href="/">
+          <button>login</button>
+          </a>
+          <p class="message2">Not registered? <a href="/accounts/register/">Create an account</a></p>
+        </form> {% endcomment %}
+
+            <form id="sign_in" method="POST" action="/accounts/login/">
+                {% csrf_token %}
+                <div class="input-group"> <span class="input-group-addon"> <i class="zmdi zmdi-account"></i> </span>
+                    <div class="form-line">
+                    <input type="text" name="username" class="form-control" autofocus="" autocapitalize="none" placeholder="Username" autocomplete="username" maxlength="254" required="" id="id_username">
+                    </div>
+                </div>
+                <div class="input-group"> <span class="input-group-addon"> <i class="zmdi zmdi-lock"></i> </span>
+                    <div class="form-line">
+                    <input type="password" class="form-control" name="password" autocomplete="current-password" placeholder="Password" required="" id="id_password"> 
+                    </div>
+                </div>
+                <div>
+                    <div class="">
+                        <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                        <label for="rememberme">Remember Me</label>
+                    </div>
+                    <div class="text-center">
+                        <a href="/">
+                          <button class="btn btn-raised waves-effect g-bg-cyan">SIGN IN</button>
+                        </a>
+                        <a href="/accounts/register/" class="btn btn-raised waves-effect">SIGN UP</a>
+                    </div>
+                    <div class="text-center"> <a href="/accounts/forgot-password/">Forgot Password?</a></div>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div>
+<div class="theme-bg"></div>
+{% endblock content %}

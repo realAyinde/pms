@@ -1,0 +1,270 @@
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block contents_section %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Add Patient</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Basic Information <small>Description text here...</small></h2>
+          </div>
+           <form name="form" action="" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <label class="form-label" for="profile">Profile Photo</label>
+                {{form.profile_photo|add_class:"form-control"}} {{ form.profile_photo.errors }}
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-8 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{form.name|add_class:"form-control"|attr:"placeholder:Name (Surname first)"}} {{ form.name.errors }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{ form.phone_number|attr:"value"|attr:"placeholder:Phone Number"|add_class:"form-control" }} {{ form.phone_number.errors }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{ form.date_of_birth|attr:"placeholder:Date of birth"|attr:"data-dpt:dtp_zmXnu"|add_class:"datepicker form-control" }} {{ form.date_of_birth.errors }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group drop-custum focused">
+                  {{ form.gender|add_class:"form-control show-tick"|attr:"placeholder:Gender" }} {{ form.gender.errors }}
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{ form.email|add_class:"form-control"|attr:"placeholder:Email" }} {{ form.email.errors }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                  {{ form.registration_number|add_class:"form-control"|attr:"placeholder:Registration Number" }} {{ form.registration_number.errors }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-12">
+                <div class="form-group drop-custum focused">
+                {{ form.blood_group|add_class:"form-control"|attr:"placeholder:Blood Group" }} {{ form.blood_group.errors }}
+                </div>
+              </div>
+              <div class="col-lg-5 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                  {{ form.occupation|add_class:"form-control"|attr:"placeholder:Occupation" }} {{ form.occupation.errors }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{ form.address|add_class:"form-control no-resize"|attr:"placeholder:Address"|attr:"rows:4" }} {{ form.address.errors }}
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <button type="submit" id="submitf" style="display:" class="btn btn-default btn-block btn-primary">Add</button>
+            </form>
+        </div>
+      </div>
+  	</div>
+    {% comment %}
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>NEXT OF KIN<small>Description text here...</small></h2>
+          </div>
+      <form name="nform" action="" method="POST">
+         {%csrf_token%}
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{nform.name|attr:"placeholder:Name"|add_class:"form-control"}}{{nform.name.errors}}
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                  {{nform.relationship|attr:"placeholder:Relationship"|add_class:"form-control"}} {{nform.relationship.errors}}
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                  {{nform.phone_number|attr:"placeholder:Phone Number"|add_class:"form-control"}} {{nform.phone_number.errors}}
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{nform.email|attr:"placeholder:Email"|add_class:"form-control"}} {{nform.email.errors}}
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="submitn" style="display:none" class="btn btn-default btn-block btn-primary">Add</button>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>Medical Cover<small>Description text here...</small></h2>
+          </div>
+          <form name="mcform" action="" method="POST">
+          {%csrf_token%}
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                  {{mcform.name|attr:"placeholder:Name"|add_class:"form-control"}}{{mcform.name.errors}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{mcform.email|attr:"placeholder:Email"|add_class:"form-control"}} {{mcform.email.errors}}
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{mcform.type_of_cover|attr:"placeholder:Type of Cover"|add_class:"form-control"}} {{mcform.type_of_cover.errors}}
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="submitmc" style="display:none" class="btn btn-default btn-block btn-primary">Add</button>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              Allergies and Directives<small>Description text here...</small>
+            </h2>
+          </div>
+            <form name="adform" action="" method="POST">
+            {%csrf_token%}
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{adform.name|attr:"placeholder:Allergy"|add_class:"form-control"}}{{adform.name.errors}}
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    {{adform.level|attr:"placeholder:Level"|add_class:"form-control"}} {{adform.level.errors}}
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="submitad" style="display:none" class="btn btn-default btn-block btn-primary">Add</button>
+            </form>
+        </div>
+
+
+        <div class="row clearfix">
+          <div class="col-md-12">
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input
+                    type="submit"
+                    class="btn btn-block btn-raised g-bg-cyan"
+                    id="submitAll"
+                    onclick="submitForms()"
+                    value="Submit"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <a
+                    href="/patients/all/"
+                    type="submit"
+                    class="btn btn-block btn-raised"
+                  >
+                    Cancel
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> {% endcomment %}
+  </div>
+  <script>
+ function submitForms() {
+  console.log('ok')
+  //cosole.table()
+  document.forms["form"].submit();
+  document.forms["nform"].submit();
+  document.forms["adform"].submit();
+  document.forms["mcform"].submit();
+
+}
+</script>
+</section>
+{% endblock contents_section %} {% block extra_scripts %}
+{% endblock extra_scripts %}

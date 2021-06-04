@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- #Float icon -->
+{% block float_icon %}
+<ul class="mfb-component--br mfb-zoomin">
+  <li class="mfb-component__wrap">
+    <a
+      href="{% url 'newPatient' %}"
+      data-mfb-label="Add new patient"
+      class="mfb-component__button--main g-bg-cyan"
+    >
+      <i class="mfb-component__main-icon--resting zmdi zmdi-plus"></i>
+    </a>
+  </li>
+</ul>
+{% endblock float_icon %}
+<!-- #Float icon -->
+
+{% block contents_section %}
+<section class="content patients">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>All Patients</h2>
+    </div>
+    <div class="row clearfix">
+      {% for patient in patients %}
+
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card all-patients">
+          <div class="body">
+            <div class="row">
+              <div class="col-md-4 col-sm-4 text-center m-b-0">
+                <a href="{% url 'singlePatient' patient.registration_number %}" class="p-profile-pix"
+                  ><img
+                    src="{{patient.profile_photo.url}}"
+                    alt="user"
+                    class="img-thumbnail img-fluid"
+                /></a>
+              </div>
+              <div class="col-md-8 col-sm-8 m-b-0">
+                <h5 class="m-b-0">
+                  <a href="{% url 'singlePatient' patient.registration_number %}">{{patient.name}}</a>
+                  <a href="#" class="edit"><i class="zmdi zmdi-edit"></i></a>
+                </h5>
+                <small>{{patient.registration_number}}</small>
+                <address class="m-b-0">
+                  {{patient.address}}<br />
+                  <abbr title="Phone">P:</abbr> {{patient.phone_number}}
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock contents_section %}

@@ -1,0 +1,79 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="card-top"></div>
+    <div class="card">
+        <h1 class="title"><span>Patient Management App</span>Register <span class="msg">Register a new membership</span></h1>
+        <div class="col-md-12">
+
+        {% comment %} <form action="/accounts/register/" method="post">
+          <h1>Sign Up</h1>
+          <label style="color:black">Username</label> <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+          <label style="color:black">Email address</label> <input type="email" name="email" maxlength="254" required="" id="id_email">
+          <label style="color:black">Password</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+          <label style="color:black">Password confirmation</label> <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+          <a href="/profile">
+          <button>Sign Up</button>
+          </a>
+          <p class="message1">Already registered? <a href="/accounts/login/">Sign In</a></p>
+        </form> {% endcomment %}
+
+
+
+
+            <form action="/accounts/register/" id="sign_up" class="col-xs-12" method="post">
+            {% csrf_token %}
+            <small>{{form.username.errors}}</small>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-account"></i>
+                </span>
+                <div class="form-line">
+                    <input type="text" class="form-control" placeholder="Username" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+                </div>
+            </div>
+            <small>{{form.email.errors}}</small>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-email"></i>
+                </span>
+                <div class="form-line">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" maxlength="254" required="" id="id_email">
+                </div>
+            </div>
+            <small>{{form.password1.errors}}</small>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-lock"></i>
+                </span>
+                <div class="form-line">
+                    <input type="password" class="form-control" minlength="6" placeholder="Password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                </div>
+            </div>
+            <small>{{form.password2.errors}}</small>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-lock"></i>
+                </span>
+                <div class="form-line">
+                    <input type="password" class="form-control" minlength="6" placeholder="Confirm Password" name="password2" autocomplete="new-password" required="" id="id_password2">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
+            </div>
+            <div class="text-center">
+                <a href="/profile"><button type="submit" class="btn btn-raised g-bg-cyan waves-effect">SIGN UP</button></a>
+            </div>
+            <div class="m-t-10 m-b--5 align-center">
+                <a href="/accounts/login/">You already have a membership?</a>
+            </div>
+        </form>
+        </div>
+    </div>  
+</div>
+<div class="theme-bg"></div>
+{% endblock %}
