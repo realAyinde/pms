@@ -56,47 +56,61 @@ def patients(request):
     patients  = Patient.objects.all().filter(doctor=doctor)
     return render(request, 'patients.html', {'patients':patients, 'doctor':doctor})
 
+@login_required(login_url='/accounts/login')
 def new_patient(request):
     current_user = request.user
     doctor = Doctor.objects.get(user_id=current_user.id)
+    # print(request.POST)
     if request.method == 'POST':
         form = NewPatientForm(request.POST, request.FILES)
-        nform = NewNextOfKinForm(request.POST, request.FILES)
-        mform = NewMedicineForm(request.POST, request.FILES)
-        adform = AllergiesAndDirectivesForm(request.POST, request.FILES)
-        if mform.is_valid() and nform.is_valid() and form.is_valid():
-            next_of_kin = nform.save()
-            next_of_kin.save()
-            print("Go on soun")
-        elif mform.is_valid():
-            medicine = mform.save()
-            medicine.doctor =doctor
-            medicine.save()
-            print("Go on soun")
-        elif adform.is_valid():
-            allergies = adform.save()
-            allergies.save()
-            print("Go on soun")
+
+        next_of_kin_name = request.POST.get("next-of-kin-name")
+        next_of_kin_relationship = request.POST.get("next-of-kin-relationship")
+        next_of_kin_phone_number = request.POST.get("next-of-kin-phone_number")
+        next_of_kin_email = request.POST.get("next-of-kin-email")
+
+        medical_cover_name = request.POST.get("med-cover-name")
+        medical_cover_email = request.POST.get("med-cover-email")
+        medical_cover_type_of_cover = request.POST.get("med-cover-type_of_cover")
+        
+        allergies_and_directives_name = request.POST.get("all-dir-name")
+        allergies_and_directives_level = request.POST.get("all-dir-level")
+        
         if form.is_valid():
+            # print(nform)
+            next_of_kin_instance = NextOfKin.objects.create(
+                name = next_of_kin_name,
+                relationship = next_of_kin_relationship,
+                phone_number = next_of_kin_phone_number,
+                email = next_of_kin_email
+            )
+
+            medical_cover_instance = MedicalCover.objects.create(
+                name = medical_cover_name,
+                email = medical_cover_email,
+                type_of_cover = medical_cover_type_of_cover
+            )
+
+            allergies_and_directives_instance = AllergiesAndDirectives.objects.create(
+                name = allergies_and_directives_name,
+                level = allergies_and_directives_level
+            )
             patient = form.save()
             patient.doctor = doctor
+            patient.next_of_kin = next_of_kin_instance
+            patient.medical_cover = medical_cover_instance
+            patient.allergies_and_directives = allergies_and_directives_instance
             patient.save()
-            # reg_no = form.cleaned_data.get("registration_number")
-            # print(reg_no)
+
+
         return redirect('allPatients')
 
-    # if request.method == 'POST':
-    #     nform = NewNextOfKinForm(request.POST, request.FILES)
-    #     if nform.is_valid():
-    #         next_of_kin = nform.save()
-    #         next_of_kin.save()
-    #     return redirect('allPatients')
     else:
         form = NewPatientForm()
-        nform = NewNextOfKinForm()
-        mform = NewMedicineForm()
-        mcform = MedicalCoverForm()
-        adform = AllergiesAndDirectivesForm()
+        nform = NewNextOfKinForm(prefix="next-of-kin")
+        mform = NewMedicineForm(prefix="medicine")
+        mcform = MedicalCoverForm(prefix="med-cover")
+        adform = AllergiesAndDirectivesForm(prefix="all-dir")
     return render(request, 'new_patient.html', {'doctor':doctor, 'form':form, 'nform':nform, 'mform':mform, 'mcform':mcform, 'adform':adform})
 
 @login_required(login_url='/accounts/login')
@@ -127,9 +141,10 @@ def treatment(request, registration_number):
             treatment.doctor = doctor
             treatment.patient = patient
             treatment.save()
+        return redirect('diagnosis', registration_number )
     else:
         form = TreatmentForm()
-    return render(request, 'treatment.html', {'patient':patient, 'doctor':doctor, 'form':form})
+        return render(request, 'treatment.html', {'patient':patient, 'doctor':doctor, 'form':form})
 
 @login_required(login_url='/accounts/login')
 def diagnosis(request, registration_number):
@@ -139,8 +154,15 @@ def diagnosis(request, registration_number):
     treatment = Treatment.objects.all().filter(patient_id=patient.id).first()
     name = patient.name
     email = patient.email
-    send_medical_report_patient(name, email, treatment, doctor, patient)
-    return render(request, 'diagnosis.html', {'doctor':doctor, 'patient':patient, 'treatment':treatment})
+    if request.method == 'POST':
+        send_medical_report_patient(name, email, treatment, doctor, patient)
+        return redirect('report_success')
+    else:
+        return render(request, 'diagnosis.html', {'doctor':doctor, 'patient':patient, 'treatment':treatment})
+
+@login_required(login_url='/accounts/login')
+def report_success(request):
+    return render(request, "result_sent.html")
 
 @login_required(login_url='/accounts/login')
 def search_results(request):

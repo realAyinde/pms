@@ -1,6 +1,77 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block contents_section %}
+{% extends 'base.html' %} {% load static %} {% load widget_tweaks %} {% block contents_section %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Diagnosis</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              Diagnosis Information
+            </h2>
+          </div>
+           <form id="contact" action="" method="POST">
+          {%csrf_token%}
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                     {{form.symptoms|attr:"placeholder:Symptoms"|add_class:"form-control no-resize"|attr:"rows:4" }}{{nform.symptoms.errors}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                     {{form.diagnosis|attr:"placeholder:Diagnosis"|add_class:"form-control"}}{{nform.diagnosis.errors}}
+                  </div>
+                </div>
+              </div>
+             </div>
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                     {{form.recommendations|attr:"placeholder:Recommendations"|add_class:"form-control"}}{{nform.recommendations.errors}}
+                  </div>
+                </div>
+              </div>
+             </div>
+             <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                     {{form.consultation_fee|attr:"placeholder:Consultation fee"|add_class:"form-control"}}{{nform.consultation_fee.errors}}
+                  </div>
+                </div>
+              </div>
+             </div>
+             <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <input type="submit" class="btn btn-block btn-raised g-bg-cyan" value="Submit">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                  <a href="/patients/all/" class="btn btn-block btn-raised">
+                    Cancel
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock contents_section %}

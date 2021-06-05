@@ -1,31 +1,89 @@
-  <div class="container" style="background-color:#EDBB99">
+  <div class="container">
     <header>
-      <a class="navbar-brand" style="font-family: 'Amaranth', sans-serif; font-size:30px"><span class="main-color" style="font-size:40px;font-family: 'Monoton', cursive">PaMaSystem</span></a>
+      <a style="font-family: sans-serif; font-size:30px"><span>Patient Magement App</span></a>
     </header>
     <h4>Hey {{patient.name}}: We have compiled your Medical Report as below</h4>
     <hr>
-    <table class="table table-striped">
-      <thead>
-        <th>Symptoms</th>
-        <th>Diagnosis</th>
-        <th>Recommendations</th>
-      </thead>
-      <tr>
-        <td style="border-right:1px solid black">{{treatment.symptoms}}</td>
-        <td style="border-right:1px solid black">{{treatment.diagnosis}}</td>
-        <td style="border-right:1px solid black">{{treatment.recommendations}}</td>
-      </tr>
+    
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{patient.name}} Diagnosis Detail</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-md-4 col-sm-4">
+                <h4>
+                  <img
+                    src="{{patient.profile_photo}}"
+                    width="70"
+                    alt="velonic"
+                  />
+                </h4>
+              </div>
+              <div class="col-md-8 col-sm-8">
+                <h4>
+                  Registration Number <br />
+                  <strong>{{patient.registration_number}}</strong>
+                </h4>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <address>
+                  <strong>{{patient.name}}</strong><br />
+                  {{patient.address}}<br />
+                  {{patient.email}}<br />
+                  <abbr title="Phone">P:</abbr> {{patient.phone_number}}
+                </address>
+              </div>
+              <div class="col-md-6 col-sm-6 text-right">
+                <p><strong>Treatment Date: </strong> {{treatment.date|date:"F d, Y"}}</p>
+                <p><strong>Treatment Time: </strong> {{treatment.date|date:"H:i A"}}</p>
+                <p class="m-t-10"><strong>Treatment ID: </strong> {{treatment.id}}</p>
+              </div>
+            </div>
+            <div class="mt-40"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="list-group">
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Symptoms</h4>
+                    <p class="list-group-item-text float-left">
+                    {{treatment.symptoms}}
+                    </p>
+                  </li>
 
-      <tr>
-        <td>
-          <h4>Consultation Fee</h4></td>
-        <td>
-          <h4>{{treatment.consultation_fee}}</h4>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <h4>You were attended by Dr. {{doctor.name}} ({{doctor.hospital}}) on {{treatment.date|date}} at {{treatment.date|time}}</h4>
-    <footer>Thanks for Using PaMaSystem</footer>
-    <footer>Regards PaMaSystem Team</footer>
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Diagnosis</h4>
+                    <p class="list-group-item-text">
+                     {{treatment.diagnosis}}
+                    </p>
+                  </li>
+
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Recommendations</h4>
+                    <p class="list-group-item-text">
+                      {{treatment.recommendations}}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <div class="row" style="border-radius: 0px">
+              <div class="col-md-12 text-right">
+                <p class="text-right"><b>Consultation fee:</b> {{treatment.consultation_fee}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h4>You were attended to by Dr. {{doctor.name}} ({{doctor.hospital}}) on {{treatment.date|date}} at {{treatment.date|time}}</h4>
+    <footer>Thanks for your patronage</footer>
+    <footer>Regards from Team</footer>
   </div>

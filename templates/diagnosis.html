@@ -1,6 +1,117 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block contents_section %}
+<section class="content" id="div_print">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>Patient's Diagnosis Result</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>{{patient.name}} Diagnosis Detail</h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-md-4 col-sm-4">
+                <h4>
+                  <img
+                    src="{{patient.profile_photo}}"
+                    width="70"
+                    alt="velonic"
+                  />
+                </h4>
+              </div>
+              <div class="col-md-8 col-sm-8">
+                <h4>
+                  Registration Number <br />
+                  <strong>{{patient.registration_number}}</strong>
+                </h4>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <address>
+                  <strong>{{patient.name}}</strong><br />
+                  {{patient.address}}<br />
+                  {{patient.email}}<br />
+                  <abbr title="Phone">P:</abbr> {{patient.phone_number}}
+                </address>
+              </div>
+              <div class="col-md-6 col-sm-6 text-right">
+                <p><strong>Treatment Date: </strong> {{treatment.date|date:"F d, Y"}}</p>
+                <p><strong>Treatment Time: </strong> {{treatment.date|date:"H:i A"}}</p>
+                <p class="m-t-10"><strong>Treatment ID: </strong> {{treatment.id}}</p>
+              </div>
+            </div>
+            <div class="mt-40"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="list-group">
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Symptoms</h4>
+                    <p class="list-group-item-text float-left">
+                    {{treatment.symptoms}}
+                    </p>
+                  </li>
 
-{% block contents_section %}
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Diagnosis</h4>
+                    <p class="list-group-item-text">
+                     {{treatment.diagnosis}}
+                    </p>
+                  </li>
+
+                  <li href="" class="list-group-item">
+                    <h4 class="list-group-item-heading col-12 p-0">Recommendations</h4>
+                    <p class="list-group-item-text">
+                      {{treatment.recommendations}}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <div class="row" style="border-radius: 0px">
+              <div class="col-md-12 text-right">
+                <p class="text-right"><b>Consultation fee:</b> {{treatment.consultation_fee}}</p>
+              </div>
+            </div>
+            <hr />
+            <div class="hidden-print col-md-12 text-right">
+
+            <form action='' method="POST">
+            {% csrf_token %}
+              <button
+                type= "submit"
+                class="btn btn-raised btn-success"
+                ><i class="zmdi zmdi-email"></i></button>
+            </form>
+            
+              <a
+                onClick="printdiv('div_print');"
+                class="btn btn-raised btn-success"
+                ><i class="zmdi zmdi-print"></i
+              ></a>
+              <a href="{% url 'allPatients' %}" class="btn btn-raised btn-default">OK</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script language="javascript">
+        function printdiv(printpage) {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.all.item(printpage).innerHTML;
+            var oldstr = document.body.innerHTML;
+            document.body.innerHTML = headstr + newstr + footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+    </script>
 
 {% endblock contents_section %}

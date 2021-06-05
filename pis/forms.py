@@ -10,7 +10,14 @@ class UpdateProfileForm(forms.ModelForm):
 class NewPatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        exclude = ('doctor',)
+        exclude = ('doctor', 'next_of_kin', 'medications', 'allergies_and_directives', 'medical_cover' )
+
+    # def set_next_of_kin(self, next_of_kin):
+    #     data = self.data.copy()
+    #     data['next_of_kin'] = next_of_kin
+    #     self.data = data
+    #     # print(data)
+
 
 class NewNextOfKinForm(forms.ModelForm):
     class Meta:

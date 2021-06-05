@@ -44,7 +44,7 @@ class Doctor(BaseModel):
 
 class NextOfKin(BaseModel):
     name = models.CharField(max_length=100)
-    relationship = models.CharField(max_length=50)
+    relationship = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20, default="08108160545")
     email = models.EmailField()
     def __str__(self):
@@ -79,9 +79,9 @@ class Patient(BaseModel):
     gender = models.CharField(max_length=6, choices=Gender.choices)
     status = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(null=True, blank=True)
-    registration_number = models.IntegerField(default=0, unique=True)
+    registration_number = models.IntegerField(unique=True)
     blood_group = models.CharField(max_length=5, choices=BloodGroup.choices, null=True)
-    next_of_kin = models.OneToOneField(NextOfKin, null=True, blank=True, on_delete=models.CASCADE)
+    next_of_kin = models.OneToOneField(NextOfKin, on_delete=models.CASCADE)
     medications = models.ForeignKey(Medicine, null=True, blank=True, on_delete=models.CASCADE)
     medical_cover = models.ForeignKey(MedicalCover, blank=True, null=True, on_delete=models.CASCADE)
     allergies_and_directives = models.ForeignKey(AllergiesAndDirectives, blank=True, null=True, on_delete=models.CASCADE)
@@ -98,9 +98,12 @@ class Treatment(BaseModel):
     doctor = models.ForeignKey(Doctor, null=True, on_delete=models.CASCADE)
     consultation_fee = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now=True)
-    symptoms = models.CharField(max_length=500, null=True)
-    diagnosis = models.CharField(max_length=1000)
-    recommendations = models.CharField(max_length=1000, null=True)
+    symptoms = models.TextField()
+    diagnosis = models.TextField()
+    recommendations = models.TextField(null=True)
 
     class Meta:
         ordering = ['-date']
+
+    def __str__(self):
+        return self.patient.name + " @ " + self.date.strftime("%d-%b-%Y (%H:%M:%S %A)")

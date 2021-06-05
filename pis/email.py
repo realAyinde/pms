@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 def send_medical_report_patient(name,receiver, treatment, doctor, patient):
     # Creating message subject and sender
     subject = 'Medical Report'
-    sender = 'biinewtondev@gmail.com'
+    sender = 'ayindesodeeq2@gmail.com'
 
     #passing in the context vairables
     text_content = render_to_string('email/report_to_patient.txt',{"name": name, 'treatment':treatment, 'doctor':doctor, 'patient':patient})

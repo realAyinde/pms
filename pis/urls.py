@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^patient/(\d+)', views.single_patient, name = 'singlePatient'),
     url(r'^treatment/(\d+)', views.treatment, name = 'newTreatment'),
     url(r'^treatment/diagnosis/(\d+)', views.diagnosis, name = 'diagnosis'),
+    url(r'^treatment/success/', views.report_success, name = 'report_success'),
     url(r'^results/', views.search_results, name = 'search_results'),
     url(r'^api/users/doctors/$', views.DoctorList.as_view()),
     url(r'^api/patients/$', views.PatientList.as_view())

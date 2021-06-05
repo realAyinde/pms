@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="block-header">
       <h2>{{patient.name}} Profile</h2>
-      {% comment %} <small class="text-muted"></small> {% endcomment %}
+      <a href="{% url 'newTreatment' patient.registration_number  %}" class="btn">Proceed to treatment</a>
     </div>
     <div class="row clearfix">
       <div class="col-lg-4 col-md-12 col-sm-12">
