@@ -1,6 +1,8 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 
+{% block extra_styles %}
+<link href="{% static 'plugins/fullcalendar/fullcalendar.min.css' %}" rel="stylesheet" />
+{% endblock extra_styles %}
 <!-- #Float icon -->
 {% block float_icon %}
 <ul class="mfb-component--br mfb-zoomin">
@@ -56,3 +58,8 @@
     </div>
 </section>
 {% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static '' %}"></script>
+<script src="{% static 'assets/plugins/fullcalendar/fullcalendar.min.css' %}"></script>
+{% endblock extra_scripts %}

@@ -7,10 +7,10 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Gender(models.TextChoices):
-    MALE = 'M', _('Male')
-    FEMALE = 'F', _('Female')
-    NON_BINARY = 'N', _('Non Binary')
-    OTHERS = 'O', _('I Prefer not to Say')
+    MALE = 'Male', _('Male')
+    FEMALE = 'Female', _('Female')
+    NON_BINARY = 'Non Binary', _('Non Binary')
+    OTHERS = 'I Prefer not to Say', _('I Prefer not to Say')
 
 class BloodGroup(models.TextChoices):
     A_POSITIVE = 'A+', _('A+')
@@ -30,7 +30,7 @@ class Doctor(BaseModel):
     title = models.CharField(max_length=20, null=True, default = 'Dr')
     description = models.CharField(max_length=20, null=True, default = 'Medical Doctor')
     name = models.CharField(max_length=200, default='Treat Me')
-    gender = models.CharField(max_length=6, choices=Gender.choices)
+    gender = models.CharField(max_length=20, choices=Gender.choices)
     phone_number = models.CharField(max_length=20, default="08108160545")
     license_number = models.CharField(max_length=20, null=True)
     specialty = models.CharField(max_length=200, default='Physician')
@@ -78,7 +78,7 @@ class Patient(BaseModel):
     occupation = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=20, default="08108160545")
     address = models.TextField()
-    gender = models.CharField(max_length=6, choices=Gender.choices)
+    gender = models.CharField(max_length=20, choices=Gender.choices)
     status = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(null=True, blank=True)
     registration_number = models.IntegerField(unique=True)

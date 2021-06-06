@@ -25,6 +25,8 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     <!-- Swift Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+    {% block extra_styles %}
+    {% endblock extra_styles %}
   </head>
 
   <body class="theme-cyan">
@@ -769,42 +771,7 @@
             <div class="card">
               <div class="header">
                 <h2>PATIENT prograss</h2>
-                <ul class="header-dropdown">
-                  <li class="dropdown">
-                    <a
-                      href="javascript:void(0);"
-                      class="dropdown-toggle"
-                      data-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      ><i class="zmdi zmdi-more-vert"></i
-                    ></a>
-                    <ul class="dropdown-menu float-right">
-                      <li>
-                        <a
-                          href="javascript:void(0);"
-                          class="waves-effect waves-block"
-                          >Action</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="javascript:void(0);"
-                          class="waves-effect waves-block"
-                          >Another action</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          href="javascript:void(0);"
-                          class="waves-effect waves-block"
-                          >Something else here</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+
               </div>
               <div class="body">
                 <ul class="basic-list">
