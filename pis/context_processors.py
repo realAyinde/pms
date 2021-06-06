@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 now = timezone.now()
 
+# @login_required(login_url='/accounts/login')
 def total_patients_context_processor(request):
-    if(request.user.id): 
+    try: 
         current_user = request.user
         doctor = Doctor.objects.get(user_id=current_user.id)
         total_patients_counts = Patient.objects.filter(doctor=doctor).count()
@@ -17,5 +18,6 @@ def total_patients_context_processor(request):
             'new_patients_counts': new_patients_counts,
             'visit_patients_counts':visit_patients_counts
         }
-
-    return {}
+    
+    except:
+        return {}

@@ -15,7 +15,6 @@ from .models import Doctor
 from .serializer import DoctorSerializer, PatientSerializer
 # Create your views here.
 from django.utils import timezone
-now = timezone.now()
 
 
 @login_required(login_url='/accounts/login')
