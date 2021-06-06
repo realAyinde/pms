@@ -29,15 +29,16 @@ class Genotype(models.TextChoices):
 class Doctor(BaseModel):
     title = models.CharField(max_length=20, null=True, default = 'Dr')
     description = models.CharField(max_length=20, null=True, default = 'Medical Doctor')
-    about_me = models.TextField()
     name = models.CharField(max_length=200, default='Treat Me')
+    gender = models.CharField(max_length=6, choices=Gender.choices)
     phone_number = models.CharField(max_length=20, default="08108160545")
-    license_number = models.IntegerField(null=True, default =1237890)
+    license_number = models.CharField(max_length=20, null=True)
     specialty = models.CharField(max_length=200, default='Physician')
     hospital = models.CharField(max_length=200, default='Nairobi Hospital')
     profile_photo = models.ImageField(upload_to='doctor_profiles/', default='doctor_profiles/no-image.jpg')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
     email = models.EmailField(null=True)
+    about_me = models.TextField(default="")
 
     def __str__(self):
         return self.name
@@ -82,7 +83,7 @@ class Patient(BaseModel):
     email = models.EmailField(null=True, blank=True)
     registration_number = models.IntegerField(unique=True)
     blood_group = models.CharField(max_length=5, choices=BloodGroup.choices, null=True)
-    next_of_kin = models.OneToOneField(NextOfKin, on_delete=models.CASCADE)
+    next_of_kin = models.OneToOneField(NextOfKin, null=True, on_delete=models.CASCADE)
     medications = models.ForeignKey(Medicine, null=True, blank=True, on_delete=models.CASCADE)
     medical_cover = models.ForeignKey(MedicalCover, blank=True, null=True, on_delete=models.CASCADE)
     allergies_and_directives = models.ForeignKey(AllergiesAndDirectives, blank=True, null=True, on_delete=models.CASCADE)

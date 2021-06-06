@@ -2,18 +2,17 @@
 
 <section class="content profile-page">
   <div class="container-fluid">
-    <div class="row clearfix">
+    <div class="row clearfix mb-3">
       <div class="col-md-12 p-l-0 p-r-0">
-        <section class="boxs-simple mb-3">
+        <section class="boxs-simple">
           <div class="profile-header">
             <div class="profile_info">
               <div class="profile-image">
                 <img src="{{doctor.profile_photo.url}}" alt="" />
               </div>
-              <h4 class="mb-0">
-                <strong>{{doctor.title}} {{doctor.name}}</strong>
-              </h4>
-              <span class="text-muted col-white">{{doctor.specialty}}</span>
+              <h4 class="mb-0">{{doctor.title}} {{doctor.name}}</h4>
+              <span class="text-muted col-white">Dentist</span>
+              <div class="mt-10">SWIFT HOSPITAL</div>
             </div>
           </div>
         </section>
@@ -52,173 +51,77 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane in active" id="mypost">
-              <div class="body">
                 <div class="wrap-reset">
-                  <div class="mypost-list">
+                  <div class="mypost-form">
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Title</h4>
-                        <p class="mb-0">{{doctor.title}}</p>
-                      </div>
+                        <h4 class="">
+                          Name
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.title}} {{doctor.name}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Name</h4>
-                        <p class="mb-0">{{doctor.name}}</p>
-                      </div>
+                        <h4 class="">
+                          License Number
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.license_number}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Licence Number</h4>
-                        <p class="mb-0">{{doctor.license_number}}</p>
-                      </div>
+                        <h4 class="">
+                          Gender
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.gender}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Specialty</h4>
-                        <p class="mb-0">{{doctor.specialty}}</p>
-                      </div>
+                        <h4 class="">
+                          Specialty
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.specialty}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Hospital</h4>
-                        <p class="mb-0">{{doctor.hospital}}</p>
-                      </div>
+                        <h4 class="">
+                          Hospital
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.hospital}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Phone Number</h4>
-                        <p class="mb-0">{{doctor.phone_number}}</p>
-                      </div>
+                        <h4 class="">
+                          Phone Number
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.phone_number}}
+                        </p>
                     </div>
                     <hr />
                     <div class="post-box">
-                      <div>
-                        <h4 class="">Email</h4>
-                        <p class="mb-0">{{doctor.email}}</p>
-                      </div>
+                        <h4 class="">
+                          Email
+                        </h4>
+                        <p class="mb-0">
+                          {{doctor.email}}
+                        </p>
                     </div>
                     <hr />
                   </div>
-                </div>
                 </div>
               </div>
-              <div
-                role="tabpanel"
-                class="tab-pane active"
-                id="usersettings"
-                aria-expanded="true"
-              >
+              <div role="tabpanel" class="tab-pane" id="usersettings">
                 <div class="body">
-                  
-                  <h2 class="card-inside-title">Account Settings</h2>
-                  <form name="doctor_form" action="" method="POST">
-                  <div class="row clearfix">
-                    <div class="col-lg-4 col-md-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Title"
-                            name="title"
-                            id="id_title"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Name"
-                            name="name"
-                            id="id_name"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="License Number"
-                            name="license_number"
-                            id="id_license_number"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-7 col-md-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Specialty"
-                            name="specialty"
-                            id="id_specialty"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control no-resize"
-                            placeholder="Hospital"
-                            name="hospital"
-                            id="id_hospital"
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Phone Number"
-                            name="phone_number"
-                            id="id_phone_number"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="form-group">
-                        <div class="form-line">
-                          <input
-                            type="email"
-                            class="form-control"
-                            placeholder="E-mail"
-                            name="email"
-                            id="id_email"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
-                      <button type="submit" class="btn btn-raised btn-success">
-                        Save Changes
-                      </button>
-                    </div>
-                  </div>
-                  </form>
                   <h2 class="card-inside-title">Security Settings</h2>
-                  <form name="password_change_form" action="" method="POST">
                   <div class="row clearfix">
                     <div class="col-sm-12">
                       <div class="form-group">
@@ -227,8 +130,6 @@
                             type="text"
                             class="form-control"
                             placeholder="Username"
-                            name="username"
-                            id="id_username"
                           />
                         </div>
                       </div>
@@ -238,8 +139,6 @@
                             type="password"
                             class="form-control"
                             placeholder="Current Password"
-                            name="password"
-                            id="id_password"
                           />
                         </div>
                       </div>
@@ -249,16 +148,98 @@
                             type="password"
                             class="form-control"
                             placeholder="New Password"
-                            name="new_password"
-                            id="id_new_password"
                           />
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-raised btn-success btn-sm">
+                      <button class="btn btn-raised btn-success btn-sm">
                         Save Changes
                       </button>
                     </div>
-                    </form>
+                  </div>
+                  <h2 class="card-inside-title">Account Settings</h2>
+                  <div class="row clearfix">
+                    <div class="col-lg-6 col-md-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="First Name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Last Name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <textarea
+                            rows="4"
+                            class="form-control no-resize"
+                            placeholder="Address Line 1"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="City"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="E-mail"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Country"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group checkbox">
+                        <label>
+                          <input name="optionsCheckboxes" type="checkbox" />
+                          <span class="checkbox-material"
+                            ><span class="check"></span
+                          ></span>
+                          Profile Visibility For Everyone
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <button class="btn btn-raised btn-success">
+                        Save Changes
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
