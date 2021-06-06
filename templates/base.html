@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
       name="viewport"
     />
-    <title>{% block title %} :: Swift - Hospital :: {% endblock title %}</title>
+    <title>{% block title %} :: Swift - App :: {% endblock title %}</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link
       href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}"
@@ -21,10 +21,12 @@
       type="text/css"
     />
     <link href="{% static 'plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/fullcalendar/fullcalendar.min.css' %}" rel="stylesheet" />
     <!-- Custom Css -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     <!-- Swift Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+    {% block extra_styles %}{% endblock extra_styles %}
   </head>
 
   <body class="theme-cyan">
@@ -71,7 +73,7 @@
       <div class="col-12">
         <div class="navbar-header">
           <a href="javascript:void(0);" class="bars"></a>
-          <a class="navbar-brand" href="">Patient Management App</a>
+          <a class="navbar-brand" href="">Swift App</a>
         </div>
       </div>
     </nav>
@@ -83,11 +85,11 @@
         <!-- User Info -->
         <div class="user-info">
           <div class="admin-image">
-            <img src="{% static 'images/random-avatar7.jpg' %}" alt="" />
+            <img src="{{doctor.profile_photo.url}}" alt="Doctor's Pic" />
           </div>
           <div class="admin-action-info">
             <span>Welcome</span>
-            <h3>Dr. John</h3>
+            <h3>{{doctor.title}} {{doctor.name}}</h3>
             <ul>
               <li>
                 <a
@@ -115,19 +117,8 @@
               </li>
             </ul>
           </div>
-          <div class="quick-stats">
-            <h5>Today Report</h5>
-            <ul>
-              <li>
-                <span>16<i>Patient</i></span>
-              </li>
-              <li>
-                <span>20<i>Panding</i></span>
-              </li>
-              <li>
-                <span>04<i>Visit</i></span>
-              </li>
-            </ul>
+         <div class="quick-stats">
+            <h3 class="col-white">{{doctor.specialty}}</h3>
           </div>
         </div>
         {% endblock user_info %}
@@ -138,25 +129,25 @@
         <div class="menu">
           <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active open">
+            <li class="{% if request.resolver_match.url_name == "myProfile" %}active open{% endif %}">
+              <a href="{% url 'myProfile' %}">
+                <i class="zmdi zmdi-account"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == "dashboard" %}active open{% endif %}">
               <a href="{% url 'dashboard' %}">
                 <i class="zmdi zmdi-home"></i>
                 <span>Dashboard</span>
               </a>
             </li>
-            <li>
-              <a href="">
+            <li class="{% if request.resolver_match.url_name == "appointments" %}active open{% endif %}">
+              <a href="{% url 'appointments' %}">
                 <i class="zmdi zmdi-calendar-check"></i>
-                <span>Appointment</span>
+                <span>Appointments</span>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="zmdi zmdi-account-add"></i>
-                <span>Doctors</span>
-              </a>
-            </li>
-            <li>
+            <li class="{% if request.resolver_match.url_name == "allPatients" %}active open{% endif %}">
               <a href="{% url 'allPatients' %}">
                 <i class="zmdi zmdi-account-o"></i>
                 <span>Patients</span>
@@ -840,6 +831,7 @@
     <script src="{% static 'bundles/morphingsearchscripts.bundle.js' %}"></script>
     <!-- morphing search Js -->
     <script src="{% static 'bundles/vendorscripts.bundle.js' %}"></script>
+    <script src="{% static 'bundles/fullcalendarscripts.bundle.js' %}"></script>
     <!-- Lib Scripts Plugin Js -->
 
     <script src="{% static 'plugins/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
@@ -853,5 +845,6 @@
     <!-- morphing search page js -->
     <script src="{% static 'js/pages/index.js' %}"></script>
     <script src="{% static 'js/pages/charts/sparkline.min.js' %}"></script>
+    <script src="{% static 'js/pages/calendar/calendar.min.js' %}"></script>
   </body>
 </html>

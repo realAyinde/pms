@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_styles %}
+<style>
+
+body {
+    counter-reset: Serial;
+}
+
+table {
+    border-collapse:separate;
+}
+
+tr td:first-child:before {
+    counter-increment: Serial;
+    content: counter(Serial);
+}
+
+</style>
+{% endblock extra_styles %}
+
 {% block contents_section %}
 <section class="content home">
     <div class="container-fluid">
@@ -14,8 +33,8 @@
                 <div class="info-box-4 hover-zoom-effect">
                     <div class="icon"> <i class="zmdi zmdi-account col-blue"></i> </div>
                     <div class="content">
-                        <div class="text">Today's new Patients</div>
-                        <div class="number">27</div>
+                        <div class="text">New Registered Patients</div>
+                        <div class="number">{{new_patients}}</div>
                     </div>
                 </div>
             </div>
@@ -23,8 +42,8 @@
                 <div class="info-box-4 hover-zoom-effect">
                     <div class="icon"> <i class="zmdi zmdi-account col-green"></i> </div>
                     <div class="content">
-                        <div class="text">Total Patients</div>
-                        <div class="number">12</div>
+                        <div class="text">Today's Patients Attended to</div>
+                        <div class="number">{{attend_patients}}</div>
                     </div>
                 </div>
             </div>
@@ -32,8 +51,8 @@
                 <div class="info-box-4 hover-zoom-effect">
                     <div class="icon"> <i class="zmdi zmdi-bug col-blush"></i> </div>
                     <div class="content">
-                        <div class="text">Today's Operations</div>
-                        <div class="number">05</div>
+                        <div class="text">Total Patients</div>
+                        <div class="number">{{patients_count}}</div>
                     </div>
                 </div>
             </div>
@@ -41,13 +60,14 @@
                 <div class="info-box-4 hover-zoom-effect">
                     <div class="icon"> <i class="zmdi zmdi-balance col-cyan"></i> </div>
                     <div class="content">
-                        <div class="text">Hospital Earning</div>
-                        <div class="number">$3,540</div>
+                        <div class="text">Consultaion Fee</div>
+                        <div class="number">#10,000</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
+         </div>
+       {% comment %} 
+       <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="card">
                     <div class="header">
@@ -138,21 +158,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+    {% endcomment %}
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="header">
-                        <h2> New Patient List <small>Description text here...</small> </h2>
-                        <ul class="header-dropdown">
-                            <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-more-vert"></i></a>
-                                <ul class="dropdown-menu float-right">
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <h2> New Patient List</h2>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -161,18 +173,19 @@
                               <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Registration number</th>
+                                <th>Registration Number</th>
                                 <th>last time visited</th>
                               </tr>
                             </thead>
                             <tbody>
+                            {% for patient in patients %}
                               <tr>
-                                <td>1</td>
-                                <td>Virginia </td>
-                                <td>@Rose</td>
-                                <td>A min ago</td>
+                                <td></td>
+                                <td>{{patient.name}} </td>
+                                <td>{{patient.registration_number}}</td>
+                                <td>{{patient.date_created}}</td>
                               </tr>
-                
+                            {% endfor %}
                             </tbody>
                           </table>
                         </div>

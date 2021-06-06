@@ -29,6 +29,7 @@ class Genotype(models.TextChoices):
 class Doctor(BaseModel):
     title = models.CharField(max_length=20, null=True, default = 'Dr')
     description = models.CharField(max_length=20, null=True, default = 'Medical Doctor')
+    about_me = models.TextField()
     name = models.CharField(max_length=200, default='Treat Me')
     phone_number = models.CharField(max_length=20, default="08108160545")
     license_number = models.IntegerField(null=True, default =1237890)

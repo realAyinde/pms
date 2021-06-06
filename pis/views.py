@@ -15,18 +15,36 @@ from .models import Doctor
 from .serializer import DoctorSerializer, PatientSerializer
 # Create your views here.
 
+import datetime
 
 @login_required(login_url='/accounts/login')
 def dashboard(request):
     current_user = request.user
     doctor = Doctor.objects.get(user_id=current_user.id)
-    return render(request, 'dashboard.html', {'doctor':doctor})
+    patients = Patient.objects.all().filter(doctor=doctor)[:10]
+    patients_count = Patient.objects.filter(doctor=doctor).count()
+    new_patients = Patient.objects.filter(doctor=doctor, date_created=datetime.date.today()).count()
+    attend_patients = Patient.objects.filter(doctor=doctor, last_modified=datetime.date.today()).count()
+    return render(request, 'dashboard.html', {'doctor':doctor, 'patients':patients, 'patients_count': patients_count, 'new_patients': new_patients, 'attend_patients':attend_patients})
+
+@login_required(login_url='/accounts/login')
+def appointments(request):
+    current_user = request.user
+    doctor = Doctor.objects.get(user_id=current_user.id)
+    return render(request, 'appointments.html', {'doctor':doctor})
+
+@login_required(login_url='/accounts/login')
+def new_appointment(request):
+    current_user = request.user
+    doctor = Doctor.objects.get(user_id=current_user.id)
+    return render(request, 'new_appointment.html', {'doctor':doctor})
 
 @login_required(login_url='/accounts/login')
 def profile(request):
     current_user = request.user
     doctor = Doctor.objects.get(user_id=current_user.id)
     return render(request, 'profile.html', {'doctor':doctor})
+    
 
 @login_required(login_url='/accounts/login')
 def update_profile(request, username):
