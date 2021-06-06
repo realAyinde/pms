@@ -14,18 +14,21 @@ from .models import Doctor
 #import UserInformationSerializer class from the serializer module
 from .serializer import DoctorSerializer, PatientSerializer
 # Create your views here.
-from django.utils import timezone
 
-now = timezone.now()
+def total_patients_context_processor(request):
+    current_user = request.user
+    doctor = Doctor.objects.get(user_id=current_user.id)
+    total_patients_counts = Patient.objects.filter(doctor=doctor).count()
+    return {
+        'total_patients_counts': total_patients_counts,
+    }
 
 @login_required(login_url='/accounts/login')
 def dashboard(request):
     current_user = request.user
     doctor = Doctor.objects.get(user_id=current_user.id)
     patients = Patient.objects.filter(doctor=doctor)[:10]
-    total_patients_counts = Patient.objects.filter(doctor=doctor).count()
-    new_patients_counts = Patient.objects.filter(doctor=doctor, date_created__gte=now).count()
-    return render(request, 'dashboard.html', {'doctor':doctor, 'patients':patients, 'total_patients_counts':total_patients_counts, 'new_patients_counts':new_patients_counts})
+    return render(request, 'dashboard.html', {'doctor':doctor, 'patients':patients})
 
 @login_required(login_url='/accounts/login')
 def appointments(request):
